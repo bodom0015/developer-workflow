@@ -156,18 +156,18 @@ NOTE: 99.9% of the time, you will be creating PRs from your personal fork and fe
 
 ## All: Review
 Once the PR is created, a comment should be added to the associated JIRA ticket containing links to any relevant:
-1. JIRA: Test case(s)
-2. DockerHub: Test docker image(s)
-3. Confluence: Documentation update(s)
-4. GitHub: Pull request(s)
+* JIRA: Test case(s)
+* DockerHub: Test docker image(s)
+* Confluence: Documentation update(s)
+* GitHub: Pull request(s)
 
 The ticket can be moved to "In Review" and assigned to the tester/reviewer, who should review these items for errors.
 
 The reviewer should follow a process normally consisting of the following steps, in order:
-1. Read and make sure you understand the test case(s)
-2. Run the test docker image(s) and walk-through the provided test case(s)
-3. Review any documentation update(s) for obvious flaws
-4. If everything above is acceptable, review and merge any related pull request(s)
+* Read and make sure you understand the test case(s)
+* Run the test docker image(s) and walk-through the provided test case(s)
+* Review any documentation update(s) for obvious flaws
+* If everything above is acceptable, review and merge any related pull request(s)
 
 Once the Pull Request(s) have been merged, the ticket is marked as **Resolved** and re-assigned back to the original developer, who should then create any release artifcats for it.
 
