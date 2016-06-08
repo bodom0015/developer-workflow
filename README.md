@@ -82,68 +82,93 @@ Once the repository is finished forking, you will notice that it is now called *
 Feel free to modify your personal fork in any way you see fit.
 
 ### Cloning a Repository
-Now you can grab a local copy of your repository by clicking the green "Clone or download" button at the top-right.
+Now you can **Clone** a local copy of your repository by clicking the green "Clone or download" button at the top-right.
 
 At a terminal on your local machine, copy the url of the GitHub repo and substitute it into the following command:
 ```bash
 git clone https://github.com/YOUR_GITHUB_USER/developer-workflow.git
+cd developer-workflow/
+git remote add upstream https://github.com/nds-org/developer-workflow.git
 ```
 
-You should see git download your clone and once it completes, you should be able to **cd** into the local copy.
+You should now have a working copy of the source on your local machine.
+
+#### Synchronization
+Your local repository will not keep itself up-to-date with the changes from the original source repo.
+
+That means that for any modifications made to that repo, you will need to be **Pull** (aka **Merge**) these changes in manually.
+
+To merge in changes from your personal fork:
+```git pull origin master```
+
+To merge in changes from the original source repo:
+```git pull upstream master```
 
 ### Creating a Branch
-Since we are working on a small piece of incremental work, organizing the changes into branches will likely help you keep track of which changes are for which features.
+Since we are working on a small piece of incremental work, organizing the changes into **Branches** will likely help you keep track of which changes are for which features.
 
 We tend to name these "feature branches" after the JIRA ticket's ID (i.e. NDS-161).
 
-For example, using the ticket above, we would execute one of the following sets command to create a new branch for its work:
-```bash
-git checkout -b NDS-161
-```
-  OR
-```bash
-git branch NDS-161
-git checkout NDS-161
-```
+For example, using the ticket above, we would execute the following command to create a new branch for this work:
+```git checkout -b NDS-161```
 
 ### Commit + Push
 Now let's say you want to make a change to your local clone.
 
 For example, let's add **emacs** to the list of tools installed within the Dockerfile.
 
-Open up the Dockerfile and you will see:
-```
+Open up the Dockerfile in a text-editor and you will see:
+```bash
 RUN apt-get -qq update && \
     apt-get -qq install vim nano curl
 ```
 
-Add **emacs** at the end of the line here.
+Add **emacs** at the end of the line here, and then **Commit** your changes:
+```git commit -a -m "Test commit"```
+
+You can then **Push** to export any local commits from your local machine to your personal fork in bulk:
+```git push origin master```
+
 
 ## Docker: Testing
 What about testing the changes you have just made?
 
-Ideally all code should be packaged as a Docker image, allowing for easy reuse and bootstrapping for testing.
+Ideally all code should be packaged as a **Docker image**, allowing for easy reuse and bootstrapping for testing.
 
-To build the image described by a Dockerfile:
-```bash
-docker build -t ndslabs/dev-workflow .
-```
+To build an image described by a Dockerfile:
+```docker build -t ndslabs/dev-workflow .```
 
-To tag the image with the desired version tag:
-```bash
-docker tag ndslabs/developer-workflow:latest ndslabs/dev-workflow:NDS-161
-```
+To tag the image with the desired version tag (usually a JIRA ticket ID):
+```docker tag ndslabs/developer-workflow:latest ndslabs/dev-workflow:NDS-161```
 
 To push the image to DockerHub and make it available to others:
-```bash
-docker push ndslabs/dev-workflow:NDS-161
-```
+```docker push ndslabs/dev-workflow:NDS-161```
 
 NOTE: The first time you push to Docker from a new machine, you will need to execute the following command first to provide your DockerHub credentials before it will allow you to push:
-```bash
-docker login
-```
+```docker login```
 
 ## GitHub: Pull Request
+So now all of your code is up on your feature branch of your personal GitHub fork and it has an associated test docker image. Let's say you are satisfied with your changes and the quality of your test Docker image. The last step before Review is to create a **Pull Request** (aka **PR**) for containing your desired changes. This is effectively a "diff" on GitHub between your feature branch and the upstream repo with an attached conversation.
+
+To create a PR, go to your personal fork and click the "New Pull Request" button at the top-left. You should then be able to choose which fork/branch you are merging to or from.
+
+NOTE: 99.9% of the time, you will be creating PRs from your personal fork and feature branch into the original source repo's "master" branch.
 
 ## All: Review
+Once the PR is created, a comment should be added to the associated JIRA ticket containing links to any relevant:
+1. JIRA: Test case(s)
+2. DockerHub: Test docker image(s)
+3. Confluence: Documentation update(s)
+4. GitHub: Pull request(s)
+
+The ticket can be moved to "In Review" and assigned to the tester/reviewer, who should review these items for errors.
+
+The reviewer should follow a process normally consisting of the following steps, in order:
+1. Read and make sure you understand the test case(s)
+2. Run the test docker image(s) and walk-through the provided test case(s)
+3. Review any documentation update(s) for obvious flaws
+4. If everything above is acceptable, review and merge any related pull request(s)
+
+Once the Pull Request(s) have been merged, the ticket is marked as **Resolved** and re-assigned back to the original developer, who should then create any release artifcats for it.
+
+Once release artifacts have been created, the ticket can safely be marked as **Closed**
