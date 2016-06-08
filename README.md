@@ -99,10 +99,14 @@ Your local repository will not keep itself up-to-date with the changes from the 
 That means that for any modifications made to that repo, you will need to be **Pull** (aka **Merge**) these changes in manually.
 
 To merge in changes from your personal fork:
-```git pull origin master```
+```bash
+git pull origin master
+```
 
 To merge in changes from the original source repo:
-```git pull upstream master```
+```bash
+git pull upstream master
+```
 
 ### Creating a Branch
 Since we are working on a small piece of incremental work, organizing the changes into **Branches** will likely help you keep track of which changes are for which features.
@@ -110,7 +114,9 @@ Since we are working on a small piece of incremental work, organizing the change
 We tend to name these "feature branches" after the JIRA ticket's ID (i.e. NDS-161).
 
 For example, using the ticket above, we would execute the following command to create a new branch for this work:
-```git checkout -b NDS-161```
+```bash
+git checkout -b NDS-161
+```
 
 ### Commit + Push
 Now let's say you want to make a change to your local clone.
@@ -124,10 +130,14 @@ RUN apt-get -qq update && \
 ```
 
 Add **emacs** at the end of the line here, and then **Commit** your changes:
-```git commit -a -m "Test commit"```
+```bash
+git commit -a -m "Test commit"
+```
 
 You can then **Push** to export any local commits from your local machine to your personal fork in bulk:
-```git push origin master```
+```bash
+git push origin master
+```
 
 
 ## Docker: Testing
@@ -136,16 +146,24 @@ What about testing the changes you have just made?
 Ideally all code should be packaged as a **Docker image**, allowing for easy reuse and bootstrapping for testing.
 
 To build an image described by a Dockerfile:
-```docker build -t ndslabs/dev-workflow .```
+```bash
+docker build -t ndslabs/dev-workflow .
+```
 
 To tag the image with the desired version tag (usually a JIRA ticket ID):
-```docker tag ndslabs/developer-workflow:latest ndslabs/dev-workflow:NDS-161```
+```bash
+docker tag ndslabs/developer-workflow:latest ndslabs/dev-workflow:NDS-161
+```
 
 To push the image to DockerHub and make it available to others:
-```docker push ndslabs/dev-workflow:NDS-161```
+```bash
+docker push ndslabs/dev-workflow:NDS-161
+```
 
 NOTE: The first time you push to Docker from a new machine, you will need to execute the following command first to provide your DockerHub credentials before it will allow you to push:
-```docker login```
+```bash
+docker login
+```
 
 ## GitHub: Pull Request
 So now all of your code is up on your feature branch of your personal GitHub fork and it has an associated test docker image. Let's say you are satisfied with your changes and the quality of your test Docker image. The last step before Review is to create a **Pull Request** (aka **PR**) for containing your desired changes. This is effectively a "diff" on GitHub between your feature branch and the upstream repo with an attached conversation.
