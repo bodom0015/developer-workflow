@@ -67,7 +67,7 @@ Forking allows users to keep their modifications separate from those of other us
 Feature branching is a strategy to confne unrelated sets of changes to different branches. This allows the user to more freely move between tasks by switching branches, without running the risk of committing unrelated code changes.
 
 # [Docker](https://opensource.ncsa.illinois.edu/confluence/display/NDS/Docker+Workflows)
-* Walk through of building / pushing a Docker image
+We use Docker to package up all test / release code for easy deployment!
 
 ## Build
 To build an image described by a Dockerfile:
