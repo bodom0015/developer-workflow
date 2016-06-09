@@ -47,7 +47,34 @@ Common Terminology:
 # [Docker](https://opensource.ncsa.illinois.edu/confluence/display/NDS/Docker+Workflows)
 * Walk through of building / pushing a Docker image
 
+## Build
+To build an image described by a Dockerfile:
+```bash
+docker build -t [User/]Image[:Tag] .
+```
 
+NOTE: If no Tag is specified, **latest** will be assumed.
+
+## Tag
+The above notation of "user/img:tag" is used throughout Docker to refer to a specific image tag from a particular organization.
+
+To tag the image with the desired version tag (usually a JIRA ticket ID):
+```bash
+docker tag user/img:oldtag user/img:newtag
+docker tag user/oldimg:tag user/newimg:tag
+docker tag olduser/img:tag newuser/img:tag
+```
+
+## Push
+To push the image to DockerHub and make it available to others:
+```bash
+docker push user/img:tag
+```
+
+NOTE: The first time you push to Docker from a new machine, you will need to execute the following command first to provide your DockerHub credentials before it will allow you to push:
+```bash
+docker login
+```
 
 # Example
 For example, take a look at this example JIRA ticket [NDS-161](https://opensource.ncsa.illinois.edu/jira/browse/NDS-161).
@@ -145,24 +172,16 @@ What about testing the changes you have just made?
 
 Ideally all code should be packaged as a **Docker image**, allowing for easy reuse and bootstrapping for testing.
 
-To build an image described by a Dockerfile:
-```bash
-docker build -t ndslabs/dev-workflow .
-```
-
-To tag the image with the desired version tag (usually a JIRA ticket ID):
-```bash
-docker tag ndslabs/developer-workflow:latest ndslabs/dev-workflow:NDS-161
-```
-
-To push the image to DockerHub and make it available to others:
-```bash
-docker push ndslabs/dev-workflow:NDS-161
-```
-
-NOTE: The first time you push to Docker from a new machine, you will need to execute the following command first to provide your DockerHub credentials before it will allow you to push:
+Build, tag, and run a test Docker image to verify that your changes have been packaged correctly:
 ```bash
 docker login
+docker build -t dev-workflow .
+docker tag dev-workflow ndslabs/dev-workflow:NDS-161
+```
+
+If everything looks like it is running correctly from the test image, push the image to DockerHub:
+```bash
+docker push ndslabs/dev-workflow:NDS-161
 ```
 
 ## GitHub: Pull Request
