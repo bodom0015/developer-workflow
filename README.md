@@ -15,8 +15,6 @@ You will need access to an account on each of:
 For help getting access to these resources, see [Getting Started](https://github.com/bodom0015/developer-workflow/blob/master/getting-started.md).
 
 # [JIRA](https://opensource.ncsa.illinois.edu/confluence/display/NDS/JIRA+Workflows)
-* Walk through of expected JIRA Story Workflow
-
 We use JIRA to track progress of any and all development work. Each issue comes in the form of a JIRA ticket.
 
 ## Lifecycle
@@ -43,22 +41,30 @@ There are several different types of tickets, each with their own workflow and d
 * Comment - TBD
 
 # [Git](https://opensource.ncsa.illinois.edu/confluence/display/NDS/Git+Workflows)
-* Walk through of Git Forking / Feature Branching Workflows
-
 We use GitHub to track and manage all changes to the NDS Labs codebase. In order to ease collaboration, we follow a forking + feature branching workflow, described in more detail below.
 
-## Process
+## Terminology:
+* **Remotes**: allow you to pull to / push from your local workspace from / to different repositories
+* **Upstream**: the git repo from which a personal fork originated
+* **Origin**: your personal fork of a particular repo
+* 
 The general workflow for making code modifications is:
 Fork -> Clone -> Branch -> Commit -> Push -> Pull Request
 
-
-## Terminology:
 * **Fork**: to take a repository from GitHub and create your own copy of it within the site, allowing you to isolate your changes from the rest of the code until you are ready to submit them.
 * **Clone**: to take a repository from GitHub and create a local copy, allowing you to make changes from your local machine.
 * **Branch**: to create a new "instance" of the repository that can be independently modified without disrupting other branches. This can help partition your changes into more reviewable pieces.
 * **Commit**: to save your local modifications into your local clone.
 * **Push**: to save your local commits back to your fork.
 * **Pull Request**: to move a particular set of commits between branches, often from a feature branch and into "master".
+
+
+
+### Forking
+Forking allows users to keep their modifications separate from those of other users. This way, each user can manage their own sets of branches and need not worry about cluttering up the upstream repository.
+
+### Feature Branching
+Feature branching is a strategy to confne unrelated sets of changes to different branches. This allows the user to more freely move between tasks by switching branches, without running the risk of committing unrelated code changes.
 
 # [Docker](https://opensource.ncsa.illinois.edu/confluence/display/NDS/Docker+Workflows)
 * Walk through of building / pushing a Docker image
