@@ -19,12 +19,23 @@ For help getting access to these resources, see [Getting Started](https://github
 
 We use JIRA to track progress of any and all development work. Each issue comes in the form of a JIRA ticket.
 
+## Lifecycle
+The general lifecycle followed by each JIRA ticket is:
+Open -> In Progress -> In Review -> Resolved -> Closed
+
+* Open: work has not been started on this ticket
+* In Progress: work is currently done on this ticket
+* In Review: work from this ticket is currently being reviewed
+* Resolved: the work from this ticket is complete, and all PRs merged, but release artifacts may still need to be created or deployed
+* Closed: all work from this ticket is complete, and the necessary release artifacts have been created
+                           
+## Issue Types
 There are several different types of tickets, each with their own workflow and deliverables that may differ from the other issue types:
 * Story - a single use case contributing to the addition of an Epic (aka New Feature)
 * Epic / New Feature - a high-level description of a new feature, comprised of several Story tickets breaking down the technical work invloved
 * Bug - functionality that differs from the expected use case of the system
 
-Less common issue types:
+### Less common Issue Types
 * Improvement - enhancement of existing functionality without adding new features
 * Requirements - discussion / investigation tickets that will often yield more tickets for the backlog
 * (Technical/Sub) Task - any other small portion of work that we would like to track in JIRA
@@ -36,7 +47,12 @@ Less common issue types:
 
 We use GitHub to track and manage all changes to the NDS Labs codebase. In order to ease collaboration, we follow a forking + feature branching workflow, described in more detail below.
 
-Common Terminology:
+## Process
+The general workflow for making code modifications is:
+Fork -> Clone -> Branch -> Commit -> Push -> Pull Request
+
+
+## Terminology:
 * **Fork**: to take a repository from GitHub and create your own copy of it within the site, allowing you to isolate your changes from the rest of the code until you are ready to submit them.
 * **Clone**: to take a repository from GitHub and create a local copy, allowing you to make changes from your local machine.
 * **Branch**: to create a new "instance" of the repository that can be independently modified without disrupting other branches. This can help partition your changes into more reviewable pieces.
@@ -78,16 +94,7 @@ docker login
 
 # Example
 For example, take a look at this example JIRA ticket [NDS-161](https://opensource.ncsa.illinois.edu/jira/browse/NDS-161).
-
-The general lifecycle followed by a JIRA ticket is:
-Open -> In Progress -> In Review -> Resolved -> Closed
-
-* Open: work has not been started on this ticket
-* In Progress: work is currently done on this ticket
-* In Review: work from this ticket is currently being reviewed
-* Resolved: the work from this ticket is complete, and all PRs merged, but release artifacts may still need to be created or deployed
-* Closed: all work from this ticket is complete, and the necessary release artifacts have been created
-                              
+   
 ## JIRA: Assign
 The first step in beginning a new increment of work starts by assigning a JIRA ticket to yourself.
 
@@ -97,9 +104,6 @@ Choose **Start Progress** (or **Reopen** for closed tickets) to move the ticket 
 
 ## Git: Development
 Now that the ticket has been assigned and marked In Progress, you are now ready to start completing the work described by this ticket.
-
-The general workflow for making code modifications is:
-Fork -> Clone -> Branch -> Commit -> Push -> Pull Request
 
 ### Forking a Repository
 At the top-right of this page, click the **Fork** button. Click this button after logging into GitHub with your credentials.
