@@ -47,7 +47,7 @@ We use GitHub to track and manage all changes to the NDS Labs codebase. In order
 * **Remotes**: allow you to pull to / push from your local workspace from / to different repositories
 * **Upstream**: the git repo from which a personal fork originated
 * **Origin**: your personal fork of a particular repo
-* 
+
 The general workflow for making code modifications is:
 Fork -> Clone -> Branch -> Commit -> Push -> Pull Request
 
