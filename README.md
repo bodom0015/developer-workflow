@@ -218,7 +218,7 @@ The reviewer should follow a process normally consisting of the following steps,
 * If everything above is acceptable, review and merge any related pull request(s)
 
 ### Problems with Test Artifacts?
-If the reviewer finds that any of the following are true, the reviewer should consult with the reviewer:
+If the reviewer finds that any of the following are true, the reviewer should consult with the developer that created the pull request:
 * the ticket is overly ambiguous
 * the test case is overly ambiguous
 * using the test image, the test case does not pass as written
