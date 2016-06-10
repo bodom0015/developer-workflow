@@ -44,7 +44,7 @@ There are several different types of tickets, each with their own workflow and d
 We use GitHub to track and manage all changes to the NDS Labs codebase. In order to ease collaboration, we follow a forking + feature branching workflow, described in more detail below.
 
 ## Terminology:
-* **Remotes**: allow you to pull to / push from your local workspace from / to different repositories
+* **Remotes**: allow you to pull to / push from your local workspace from / to different git repositories
 * **Upstream**: the git repo from which a personal fork originated
 * **Origin**: your personal fork of a particular repo
 
@@ -52,13 +52,11 @@ The general workflow for making code modifications is:
 Fork -> Clone -> Branch -> Commit -> Push -> Pull Request
 
 * **Fork**: to take a repository from GitHub and create your own copy of it within the site, allowing you to isolate your changes from the rest of the code until you are ready to submit them.
-* **Clone**: to take a repository from GitHub and create a local copy, allowing you to make changes from your local machine.
+* **Clone**: to take a repository from GitHub and create a local working copy, allowing you to make changes from your local machine.
 * **Branch**: to create a new "instance" of the repository that can be independently modified without disrupting other branches. This can help partition your changes into more reviewable pieces.
 * **Commit**: to save your local modifications into your local clone.
 * **Push**: to save your local commits back to your fork.
 * **Pull Request**: to move a particular set of commits between branches, often from a feature branch and into "master".
-
-
 
 ### Forking
 Forking allows users to keep their modifications separate from those of other users. This way, each user can manage their own sets of branches and need not worry about cluttering up the upstream repository.
@@ -99,14 +97,17 @@ docker login
 ```
 
 # Example
-For example, take a look at this example JIRA ticket [NDS-161](https://opensource.ncsa.illinois.edu/jira/browse/NDS-161).
+For example, take a look at this example JIRA ticket [NDS-161](https://opensource.ncsa.illinois.edu/jira/browse/NDS-161). Typcially, you will want to **only** do work that has been addressed in the ticket:
+* If a ticket is too vague, it can be discussed / updated / commented on to provide more detailed information
+* If a ticket enables more work that is not already covered under another ticket, a new ticket can be created to encompass the new work
+* If a ticket is too large or unwieldy, it can be split out into separate tickets if possible
    
 ## JIRA: Assign
 The first step in beginning a new increment of work starts by assigning a JIRA ticket to yourself.
 
 Click the link above and click on the "Assignee" field at the top-right. A dropdown should display allowing you to choose yourself as the Assignee.
 
-Choose **Start Progress** (or **Reopen** for closed tickets) to move the ticket to the **IN PROGRESS** state.
+Once the ticket has been assigned, click **Start Progress** at the top (or **Reopen** for closed tickets) to move the ticket to the **IN PROGRESS** state.
 
 ## Git: Development
 Now that the ticket has been assigned and marked In Progress, you are now ready to start completing the work described by this ticket.
@@ -116,12 +117,12 @@ At the top-right of this page, click the **Fork** button. Click this button afte
 
 Once the repository is finished forking, you will notice that it is now called **YOUR_GITHUB_USER/developer-workflow**. 
 
-Feel free to modify your personal fork in any way you see fit.
+This is your personal fork that only you have access to push (by default). You can modify your personal fork in any way you see fit without affecting the upstream repository.
 
 ### Cloning a Repository
-Now you can **Clone** a local copy of your repository by clicking the green "Clone or download" button at the top-right.
+Now you can **Clone** a local copy of your personal fork by clicking the green "Clone or download" button at the top-right. From here, you can copy the HTTPS endpoint for this repository into your clipboard.
 
-At a terminal on your local machine, copy the url of the GitHub repo and substitute it into the following command:
+At a terminal on your local machine, paste the URL into the following command:
 ```bash
 git clone https://github.com/YOUR_GITHUB_USER/developer-workflow.git
 cd developer-workflow/
@@ -131,7 +132,7 @@ git remote add upstream https://github.com/nds-org/developer-workflow.git
 You should now have a working copy of the source on your local machine.
 
 #### Synchronization
-Your local repository will not keep itself up-to-date with the changes from the original source repo.
+Your local repository will not automatically keep itself up-to-date with the changes from the original source repo.
 
 That means that for any modifications made to that repo, you will need to be **Pull** (aka **Merge**) these changes in manually.
 
@@ -189,17 +190,17 @@ docker build -t dev-workflow .
 docker tag dev-workflow ndslabs/dev-workflow:NDS-161
 ```
 
-If everything looks like it is running correctly from the test image, push the image to DockerHub:
+If everything looks like it is running correctly from the test image, go ahead and push the image to DockerHub:
 ```bash
 docker push ndslabs/dev-workflow:NDS-161
 ```
 
 ## GitHub: Pull Request
-So now all of your code is up on your feature branch of your personal GitHub fork and it has an associated test docker image. Let's say you are satisfied with your changes and the quality of your test Docker image. The last step before Review is to create a **Pull Request** (aka **PR**) for containing your desired changes. This is effectively a "diff" on GitHub between your feature branch and the upstream repo with an attached conversation.
+So now all of your code is up on your feature branch of your personal GitHub fork and it has an associated test docker image. Let's say you are satisfied with your changes and the quality of your test Docker image. The last step before Review is to create a **Pull Request** (aka **PR**) containing your desired changes. This is effectively a "diff" on GitHub between your feature branch and the upstream repo with a conversation attached.
 
 To create a PR, go to your personal fork and click the "New Pull Request" button at the top-left. You should then be able to choose which fork/branch you are merging to or from.
 
-NOTE: 99.9% of the time, you will be creating PRs from your personal fork and feature branch into the original source repo's "master" branch.
+NOTE: 99.9% of the time, you will be creating PRs from your personal fork and feature branch into the upstream repo's "master" branch.
 
 ## All: Review
 Once the PR is created, a comment should be added to the associated JIRA ticket containing links to any relevant:
