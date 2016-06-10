@@ -217,6 +217,14 @@ The reviewer should follow a process normally consisting of the following steps,
 * Review any documentation update(s) for obvious flaws
 * If everything above is acceptable, review and merge any related pull request(s)
 
+## Success!
 Once the Pull Request(s) have been merged, the ticket is marked as **Resolved** and re-assigned back to the original developer, who should then create any release artifcats for it.
+
+This might include:
+* NDS Labs API Server image
+* NDS Labs WebUI image
+* NDS Labs CLI
+* other images
+
 
 Once release artifacts have been created, the ticket can safely be marked as **Closed**
