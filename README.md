@@ -217,6 +217,20 @@ The reviewer should follow a process normally consisting of the following steps,
 * Review any documentation update(s) for obvious flaws
 * If everything above is acceptable, review and merge any related pull request(s)
 
+### Problems with Test Artifacts?
+If the reviewer finds that any of the following are true, the reviewer should consult with the reviewer:
+* the ticket is overly ambiguous
+* the test case is overly ambiguous
+* using the test image, the test case does not pass as written
+* the documentation provided is overly ambiguous
+* changes exist in the pull request that do not match the ticket description
+* changes exist in the pull request that are not understood, or oppose best-practices
+
+### Merge Conflicts
+Problems with merge conflicts? Take a deep breath and follow the guide below:
+
+https://opensource.ncsa.illinois.edu/confluence/display/NDS/Resolving+Merge+Conflicts
+
 ## Success!
 Once the Pull Request(s) have been merged, the ticket is marked as **Resolved** and re-assigned back to the original developer, who should then create any release artifcats for it.
 
@@ -224,7 +238,7 @@ This might include:
 * NDS Labs API Server image
 * NDS Labs WebUI image
 * NDS Labs CLI
-* other images
+* other Docker images
 
 
 Once release artifacts have been created, the ticket can safely be marked as **Closed**
